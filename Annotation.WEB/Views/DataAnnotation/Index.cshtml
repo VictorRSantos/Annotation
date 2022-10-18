@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Annotation.Application.ViewModels.DataAnnotationViewModel>
+
+@{
+    ViewData["Title"] = "Annotation";
+}
+
+
+<h2 class="text-center">Annotations</h2>
+
+<p>
+    <a asp-action="NewDataAnnotation" class="btn btn-dark">Add new Annotation</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("System Name")
+            </th>
+            <th>
+                @Html.DisplayName("Login")
+            </th>
+            <th>
+                @Html.DisplayName("Password")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelData => data.SystemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelData => data.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelData => data.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelData => data.Description)
+                </td>
+                <td>
+                    <a asp-action="UpdateDataAnnotation" asp-route-id="@data.Id" class="btn btn-dark">Update Annotation</a>
+                    <form asp-action="Delete" asp-route-id="@data.Id">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
